@@ -17,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick-theme.css?ver=1" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=Nu7GGZxq1jrv1d4zLO2L&submodules=geocoder"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a88490c6dc35b15ac5400ab0147b7cb3&libraries=drawing"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/slick/slick.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
@@ -122,6 +122,12 @@
 		color: #fff;
 		font-size: 20px;
 		margin-top: 20px;
+	}
+	.section3Content > ul > li > p > a{
+		color:#fff;
+	}
+	.callBtn{
+		display:none;
 	}
 	#section4 {
 		width: 100%;
@@ -335,6 +341,12 @@
 	.section3Content > ul > li > p:last-child{
 		font-size:17px;
 	}
+	.section3Content > ul > li > p > a{
+		color:#fff;
+	}
+	.callBtn{
+		display:none;
+	}
 	#section4 {
 		width: 100%;
 		/* height:105%; */
@@ -531,6 +543,9 @@
 		float:right;
 		color:#fff;
 		font-size:15px;
+	}
+	.section3Content > ul > li > p > a{
+		color:#fff;
 	}
 	#section4{
 		width:100%;
@@ -745,7 +760,7 @@
 		</div><!-- section2 end -->
 		
 		<div id="section3" class="sectionDiv">
-			<div id="map" style="width: 100%; height: 50%; margin: 0 auto;"></div>
+			<!-- <div id="map" style="width: 100%; height: 50%; margin: 0 auto;"></div>
 			<script>
 				var mapOptions = {
 					center : new naver.maps.LatLng(35.840200, 128.615696),
@@ -758,7 +773,59 @@
 					position : new naver.maps.LatLng(35.840200, 128.615696),
 					map : map
 				});
-			</script>
+			</script> -->
+			<div id="map" style="width: 100%; height: 50%; margin: 0 auto;"></div>
+				<script>
+					var container = document.getElementById('map');
+					var options = {
+						center: new daum.maps.LatLng(35.840200, 128.615696),
+						level: 3
+					};
+			
+					var map = new daum.maps.Map(container, options);
+					
+					// 마커가 표시될 위치입니다 
+					var markerPosition  = new daum.maps.LatLng(35.840200, 128.615696); 
+
+					// 마커를 생성합니다
+					var marker = new daum.maps.Marker({
+					    position: markerPosition
+					});
+
+					// 마커가 지도 위에 표시되도록 설정합니다
+					marker.setMap(map);
+					
+					// 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다.
+					var iwContent = '<div style="padding-left:40px; padding-top:2px; color:brown; font-size:15px; font-weight:bold;">아너스오토</div>'; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+
+					// 인포윈도우를 생성합니다
+					var infowindow = new daum.maps.InfoWindow({
+					    content : iwContent
+					});
+
+					// 마커에 마우스오버 이벤트를 등록합니다
+					daum.maps.event.addListener(marker, 'mouseover', function() {
+					  // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+					    infowindow.open(map, marker);
+					});
+
+					// 마커에 마우스아웃 이벤트를 등록합니다
+					daum.maps.event.addListener(marker, 'mouseout', function() {
+					    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+					    infowindow.close();
+					});
+					
+					daum.maps.event.addListener(marker, 'click', function() {
+					  	// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+					    infowindow.open(map, marker);
+					});
+					
+					// 마커에 마우스아웃 이벤트를 등록합니다
+					daum.maps.event.addListener(map, 'click', function() {
+					    // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+					    infowindow.close();
+					});
+				</script>
 			<div class="section3Content">
 				<ul>
 					<li><img src="${pageContext.request.contextPath}/resources/images/section3Icon01.png" alt="아너스오토 수입차전문매장 위치">
@@ -771,7 +838,7 @@
 					</li>
 					<li><img src="${pageContext.request.contextPath}/resources/images/section3Icon03.png" alt="아너스오토 수입차전문매장 전화번호">
 						<p>전화번호</p>
-						<p>053 761 0202</p>
+						<p><a href="tel:053-761-0202">053 761 0202</a>&nbsp;&nbsp;<a class="callBtn" href="tel:053-761-0202">[바로전화]</a></p>
 					</li>
 					<li><img src="${pageContext.request.contextPath}/resources/images/section3Icon04.png" alt="아너스오토 수입차전문매장 메일">
 						<p>메 일</p>
