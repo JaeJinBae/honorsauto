@@ -834,7 +834,9 @@
 					</li>
 					<li><img src="${pageContext.request.contextPath}/resources/images/section3Icon02.png" alt="아너스오토 수입차전문매장 영업시간">
 						<p>영업시간</p>
-						<p>AM 09:00 - PM 06:00</p>
+						<p>평 일 AM 09:30 - PM 06:00</p>
+						<p>토요일 AM 09:30 - PM 04:00</p>
+						<p>일요일, 공휴일 휴무</p>
 					</li>
 					<li><img src="${pageContext.request.contextPath}/resources/images/section3Icon03.png" alt="아너스오토 수입차전문매장 전화번호">
 						<p>전화번호</p>
