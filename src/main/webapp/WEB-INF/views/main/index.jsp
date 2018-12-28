@@ -335,7 +335,8 @@
 	}
 	.section3Content > ul > li > p {
 		color: #fff;
-		font-size: 20px;
+		font-size: 16px;
+		letter-spacing: -1px;
 		margin-top: 20px;
 	}
 	.section3Content > ul > li > p:last-child{
